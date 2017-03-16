@@ -274,8 +274,6 @@ You need to close your laptop and go home, or you need to install updates on you
 
 Closing an active SSH connection will terminate any processes you have started in the associated *session*.
 To keep long-running tasks going even after you have disconnected, you need to start a separate session that will continue running in the background after you close your SSH connection.
-
-Closing an active SSH connection (such as when you need to close your laptop or let your desktop go into sleep mode) will terminate any processes you have started on the remote machine.
 There are a few ways to do this, but we'll be discussing a program called `tmux`, which stands for "terminal multiplexer".
 
 ### Overview of `tmux`
