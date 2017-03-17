@@ -19,7 +19,7 @@ search within files without even opening them, using `grep`. Grep is a command-l
 utility for searching plain-text data sets for lines matching a string or regular expression.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns  
+Suppose we want to see how many reads in our file are really bad, with at least 10 consecutive Ns.
 Let's search for the string NNNNNNNNNN in file `SRR098026.fastq` in the `untrimmed_fastq` folder:
 
 ```bash
@@ -42,6 +42,7 @@ for example:
     CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
     +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 ****
 **Exercise**
@@ -127,7 +128,7 @@ learn to become proficient with the pipe and redirection operators:
 
 ## Practicing searching and redirection
 
-Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
+Finally, let's use the new tools in our kit and a few new ones to explore our SRA metadata file.
 
 ```bash
 $ cd ../sra_metadata/
@@ -178,7 +179,7 @@ $ cut -f3 SraRunTable.txt | head -n 10
     SINGLE
     SINGLE
     PAIRED
-    
+
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
 for just PAIRED and count the number of hits.
 
@@ -205,7 +206,7 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
 ```
 
       2 PAIRED
-     35 SINGLE 
+     35 SINGLE
 
 3) Sort the metadata file by PAIRED/SINGLE and save to a new file
    We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
@@ -240,7 +241,7 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 3) Filter subsets into new files bases on load date
 ****
 
- 
+
 
 
 ## Where can I learn more about the shell?
@@ -259,7 +260,7 @@ the command line, automate something you don't really need to automate.
 
 ## Bonus:
 
-**alias** 
+**alias**
 
 **.bashrc**
 
