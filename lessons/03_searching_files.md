@@ -19,7 +19,7 @@ search within files without even opening them, using `grep`. Grep is a command-l
 utility for searching plain-text data sets for lines matching a string or regular expression.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns  
+Suppose we want to see how many reads in our file are really bad, with at least 10 consecutive Ns.
 Let's search for the string NNNNNNNNNN in file `SRR098026.fastq` in the `untrimmed_fastq` folder:
 
 ```bash
@@ -42,6 +42,7 @@ for example:
     CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
     +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 ****
 **Exercise**
@@ -78,7 +79,7 @@ The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called bad_reads.txt. Take
 a look at it and see if it has what you think it should.
 
-If we use '>>', it will append to rather than overwrite a file.  This can be useful for
+If we use `>>`, it will append to rather than overwrite a file.  This can be useful for
 saving more than one search, for example:
 
 ```bash
@@ -127,7 +128,7 @@ learn to become proficient with the pipe and redirection operators:
 
 ## Practicing searching and redirection
 
-Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
+Finally, let's use the new tools in our kit and a few new ones to explore our SRA metadata file.
 
 ```bash
 $ cd ../sra_metadata/
@@ -153,16 +154,16 @@ $ head -n 1 SraRunTable.txt
     BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MBytes_l	ReleaseDate_s Run_s SRA_Sample_s Sample_Name_s Assay_Type_s AssemblyName_s BioProject_s Center_Name_s Consent_s Organism_Platform_s SRA_Study_s g1k_analysis_group_s g1k_pop_code_s source_s strain_s
 
 That's only the first line but it is a lot to take in.  'cut' is a program that will extract columns in tab-delimited
-files.  It is a very good command to know.  Lets look at just the first four columns in the header using the '|' redirect
-and 'cut'
+files.  It is a very good command to know.  Lets look at just the first four columns in the header using the `|` redirect
+and the `cut` command.
 
 ```bash
-$ head -n 1 SraRunTable.txt | cut -f1-4
+$ head -n 1 SraRunTable.txt | cut -f 1-4
 ```
 
     BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s    
 
-'-f1-4' means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
+`-f 1-4` means to cut the first four fields (columns).  The `LibraryLayout_s` column looks promising.  Let's look at some data for just that column.
 
 ```bash
 $ cut -f3 SraRunTable.txt | head -n 10
@@ -178,7 +179,7 @@ $ cut -f3 SraRunTable.txt | head -n 10
     SINGLE
     SINGLE
     PAIRED
-    
+
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
 for just PAIRED and count the number of hits.
 
@@ -201,11 +202,11 @@ This returns a sorted list (too long to show here) of PAIRED and SINGLE values. 
 count the different categories.
 
 ```bash
-$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 ```
 
       2 PAIRED
-     35 SINGLE 
+     35 SINGLE
 
 3) Sort the metadata file by PAIRED/SINGLE and save to a new file
    We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
@@ -240,7 +241,7 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 3) Filter subsets into new files bases on load date
 ****
 
- 
+
 
 
 ## Where can I learn more about the shell?
@@ -259,7 +260,7 @@ the command line, automate something you don't really need to automate.
 
 ## Bonus:
 
-**alias** 
+**alias**
 
 **.bashrc**
 
