@@ -73,11 +73,11 @@ This is the first and last place in these lessons where it will matter if you ar
 #### **Windows users**
 
 *Prerequisites*: You must have an SSH client.
-There are several free options, but we will only discuss PuTTY. [[Download Putty.exe](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)]
+There are several free options, but we will only discuss PuTTY. [Download Putty.exe](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
 For Windows, you will have downloaded a separate program called PuTTy to allow you to use the shell.
 
-1. Open `PuTTY`; In the 'Host Name (or IP address)' section paste in the IP address provided by your instructor (or the IP address of an instance you have provisioned yourself).
+1. Open `PuTTY`; In the 'Host Name (or IP address)' section paste in the IP address provided by your instructor.
    *Keep the default selection 'SSH' and Port (22)*. <br />
    ![Putty Image](../img/putty_screenshot_1.png)
 1. Click 'Open' and you will be presented with a security warning.
