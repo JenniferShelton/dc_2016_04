@@ -9,10 +9,10 @@ date: 2017-03-15
 
 ## Learning Objectives
 
-* Understand benefits of working on a remote computer system
-* Be able to connect to a cloud instance via **secure shell (SSH)**
-* Check the available resources and file system on your remote machine
-* Keep background processes working in the cloud with `tmux`
+* Explain the necessity and benefits of working on a remote computer system.
+* Employ connection to a cloud instance via **secure shell (SSH)**.
+* Assess the available resources and file system on your remote machine.
+* Implement `tmux` to keep background processes working in the cloud.
 
 There are a number of reasons why accessing a remote machine is invaluable to any scientist working with large datasets.
 In the early history of computing, working on a remote machine was standard practice - computers were bulky and expensive.
@@ -28,11 +28,11 @@ The cloud is a part of our everyday life (e.g. using Amazon, Google, Netflix, or
 The topic is fascinating but **this lesson says '5 minutes or less'** so let's get connected.
 
 
-### The Shell
+### The `shell`
 ---
 
 
-The **shell** is a program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard combination.
+The `shell` (aka  `BASH` or `terminal`)is a program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard combination.
 **The shell is an interpreter that helps translate our input into computer language.**
 
 There are many reasons to learn about the shell.
@@ -46,6 +46,7 @@ There are many reasons to learn about the shell.
 * Computational resources that can handle large datasets, such as clusters or cloud computing, require a working knowledge of Unix.
 
 We will be using the shell on our laptops to connect to the cloud.
+
 **How do we access the `shell`?**
 
 ## Exercises
@@ -61,7 +62,7 @@ For the duration of this workshop, we will be accessing data and tools required 
 This is the first and last place in these lessons where it will matter if you are using PC, Mac, or Linux. After we connect, we will all be on the same operating system/computing environment.
 
 > To save time, your instructor will have launched an remote computer (instance) for you prior to the workshop.
-> **Each instance will have an associated IP adresss listed in the etherpad which you will need to connect to the instance**.
+> **Each instance will have an associated IP address listed in the etherpad which you will need to connect to the instance**.
 > If you are following these lessons on your own, or after the workshop see the lesson on [cloud computing](https://github.com/datacarpentry/cloud-genomics/tree/gh-pages/lessons) for instructions on how to do this yourself.
 
 **User Credentials** are case sensitive:
@@ -79,20 +80,21 @@ For Windows, you will have downloaded a separate program called PuTTy to allow y
 
 1. Open `PuTTY`; In the 'Host Name (or IP address)' section paste in the IP address provided by your instructor.
    *Keep the default selection 'SSH' and Port (22)*. <br />
-   ![Putty Image](../img/putty_screenshot_1.png)
+   ![](../img/putty_screenshot_1.png)
 1. Click 'Open' and you will be presented with a security warning.
    Select 'Yes' to continue to connect. <br />
-   ![Putty security screen](../img/putty_screenshot_2.png)
+   ![](../img/putty_screenshot_2.png)
 1. In the final step, you will be asked to provide a login and password.
-   **Note:** When typing your password, it is common in Unix/Linux not see see any asterisks (e.g. ****) or moving cursors.
+
+  **Note:** When typing your password, it is common in Unix/Linux not see see any asterisks (e.g. ****) or moving cursors.
    Just continue typing. <br />
-   ![Putty login](../img/putty_screenshot_3.png)
+   ![](../img/putty_screenshot_3.png)
 1. You should now be connected!
 
 
 #### **Mac/Linux users**
 
-*Prerequisites*: The shell is already available on Mac and Linux computers.
+**Prerequisites**: The `shell` is already available on Mac and Linux computers.
 
 On Linux search for `Terminal`
 
@@ -100,26 +102,27 @@ On Mac the shell is available through Terminal:
 	`Applications -> Utilities -> Terminal`
 
 Or click on the magnifying glass in the upper right of the Desktop and search for 'terminal' and/or look for the `terminal` icon.<br>
-![terminal icon](../img/terminal.png)
+![](../img/terminal.png)
 
-  1. Open the terminal and type the following command substituting 'ip_address' for the IP address your instructor will provide.
+1. Open the terminal and type the following command substituting `ip_address` for the IP address your instructor will provide.
+
      *Be sure to pay attention to capitalization and spaces*
 
   ```
   $ ssh dcuser@ip_address
   ```
 
-  1. You will receive a security message that looks something like the message below.
+1. You will receive a security message that looks something like the message below.
      Type 'yes' to proceed.
 
   ```
   The authenticity of host 'ec2-52-91-14-206.compute-1.amazonaws.com (52.91.14.206)' can't be established. ECDSA key fingerprint is SHA256:S2mMV8mCThjJHm0sUmK2iOE5DBqs8HiJr6pL3x/XxkI. Are you sure you want to continue connecting (yes/no)?
   ```
 
-  1. In the final step, you will be asked to provide a login and password.
+1. In the final step, you will be asked to provide a login and password.
      **Note:** When typing your password, it is common in Unix/Linux not see see any asterisks (e.g. ****) or moving cursors.
 	 Just continue typing.
-  1. You should now be connected!
+1. You should now be connected!
 
 ### **Verifying your connection and environment**
 
@@ -264,8 +267,8 @@ dcuser@ip-172-31-62-209 ~ $ tree -L 1
 # -L 1 option = One level deep
 ```
 
-## Executing long-running jobs in the cloud
 
+## Executing long-running jobs in the cloud
 ---
 
 Often when working in the cloud, certain tasks or analyses require a long period of run time (hours or even days).
@@ -274,7 +277,9 @@ You need to close your laptop and go home, or you need to install updates on you
 
 Closing an active SSH connection will terminate any processes you have started in the associated *session*.
 To keep long-running tasks going even after you have disconnected, you need to start a separate session that will continue running in the background after you close your SSH connection.
+
 There are a few ways to do this, but we'll be discussing a program called `tmux`, which stands for "terminal multiplexer".
+
 
 ### Overview of `tmux`
 
@@ -286,9 +291,10 @@ The term *multi-tasking* became popular when this feature was introduced in comp
 The `tmux` program allows you to multi-task in your terminal, with different "windows" running simultaneously.
 The terms we use when talking about `tmux` are a bit different, but the concepts are essentially the same.
 
-- Instead of saying **window** we say **session**.
-- Instead of saying **minimize** we say **detach**.
-- Instead of saying **maximize** we say **attach**.
+* Instead of saying **window** we say **session**.
+* Instead of saying **minimize** we say **detach**.
+* Instead of saying **maximize** we say **attach**.
+
 
 ### Starting a new session
 

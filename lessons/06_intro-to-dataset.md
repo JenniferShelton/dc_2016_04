@@ -3,6 +3,7 @@ layout: lesson
 root: .
 title: Introduction to workshop dataset
 minutes: 45
+date: 2017-03-21
 ---
 
 ## Learning Objectives

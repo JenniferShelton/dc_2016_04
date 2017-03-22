@@ -1,7 +1,7 @@
 ---
 title: "Introuducing FASTQ format and error profiles"
-author: "Mary Piper, Meeta Mistry"
-date: "Thursday, March 31, 2016"
+author: "Mary Piper, Meeta Mistry, Chris Hamm, Daniel Standage"
+date: 2017-03-21
 ---
 
 Approximate time: 120 minutes

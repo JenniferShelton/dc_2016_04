@@ -58,7 +58,7 @@ You can also use the command `ls -l` to see whether items in a directory are fil
 ```
 $ ls -l
 
-# option -l = list in long format
+# option -l = 'list in long format'
 ```
 
 ```
@@ -120,7 +120,7 @@ This is called a hierarchical file system structure, like an upside down tree
 with root (/) at the base that looks like this:
 
 
-![Unix](../img/Slide1.jpg)
+![](../img/Slide1.jpg)
 
 That root (`/`) is often also called the 'top' level.
 
