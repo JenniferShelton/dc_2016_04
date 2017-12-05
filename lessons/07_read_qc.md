@@ -137,7 +137,7 @@ $ mkdir data docs results
 Lets symlink our sample data to our working (home) directory
 
 ```
-$ ln -s ~/.dc_sampledata_lite/untrimmed_fastq/ data/
+$ ln -s ~/dc_sample_data/untrimmed_fastq/ data/
 ```
 
 #### Run FastQC
